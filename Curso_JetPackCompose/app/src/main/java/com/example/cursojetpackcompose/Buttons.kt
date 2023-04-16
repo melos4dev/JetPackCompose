@@ -4,10 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -66,6 +63,41 @@ fun buttonOutliner() {
     }
 }
 
+@Composable
+fun MyTextButton(){
+    var enabled by rememberSaveable { mutableStateOf(true) }
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
+
+        OutlinedButton(
+            onClick = { enabled = false },
+            enabled = enabled,
+            modifier = Modifier.padding(top = 8.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Magenta,
+                contentColor = Color.Blue,
+                disabledBackgroundColor = Color.Red,
+                disabledContentColor = Color.Yellow
+            )
+        ) {
+            Text(text = "Hola boton normal")
+        }
+
+        TextButton(onClick = { /*TODO*/ }) {
+            //Necesita un texto. La diferencia es que cuando se ejecute el borde del botón no se vera,
+        // sera un texto clicable
+            Text(text = "hola textButton")
+            
+        }
+
+    }
+}
+
+
+
 
 @Preview(name = " ejemplo boton", showSystemUi = true, showBackground = true)
 @Composable
@@ -77,4 +109,11 @@ fun PreviewButton() {
 @Composable
 fun PreviewButtonOutliner() {
     buttonOutliner()
+}
+
+
+@Preview(name="ejemplo boton texto", showSystemUi = true, showBackground = true)
+@Composable
+fun PreviewTextButton(){
+    MyTextButton()
 }
