@@ -28,8 +28,7 @@ fun MyImageAdvance() {
         painter = painterResource(id = R.drawable.ic_launcher_background),
         contentDescription = "Ejemplo avanzado",
         modifier = Modifier.clip(CircleShape)
-        //clip es la propiedad para recortar la imagen
-       // modifier = Modifier.clip(RoundedCornerShape(25f))
+
     )
 }
 
