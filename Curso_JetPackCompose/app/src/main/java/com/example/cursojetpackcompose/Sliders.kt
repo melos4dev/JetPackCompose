@@ -57,12 +57,14 @@ fun PreviewSliderRanger() {
 @Composable
 fun MySliderRanger(){
     var currentRange by remember{mutableStateOf(0f..10f) }
-
+/*
     RangeSlider(values = currentRange,
         onValueChange = {currentRange = it},
         valueRange = 0f..40f
 
     )
+
+ */
 }
 
 

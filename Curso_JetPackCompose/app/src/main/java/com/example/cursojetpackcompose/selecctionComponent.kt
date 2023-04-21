@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
@@ -164,4 +165,45 @@ fun PreviewCheckBoxMultiple() {
             MyCheckBoxStateHoistingComplete(it)
         }
     }
+}
+
+@Composable
+fun MyRadioButtonList(name: String, onItemSelected: (String) -> Unit) {
+
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "mimimi", onClick = { onItemSelected("mimimi") })
+        Text(text = "mimimi")
+
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "tititi", onClick = { onItemSelected("tititi") })
+        Text(text = "tititi")
+
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "tututu", onClick = { onItemSelected("tututu") })
+        Text(text = "tututu")
+
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "asi no es", onClick = { onItemSelected("asi no es") })
+        Text(text = "asi no es")
+
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "asi tampoco", onClick = { onItemSelected("asi tampoco") })
+        Text(text = "asi tampoco")
+
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+
+        RadioButton(selected = name == "asi sí", onClick = { onItemSelected("asi sí") })
+        Text(text = "asi sí")
+    }
+
 }
