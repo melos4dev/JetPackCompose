@@ -268,7 +268,7 @@ fun ImageLogo(modifier: Modifier) {
 
 @Composable
 fun Header(modifier: Modifier) {
-    //tenemos que simular ell contexto como una activity para que al clicarlo se cierre, por eso
+    //tenemos que simular el contexto como una activity para que al clicarlo se cierre, por eso
     // creamos la variable activity y le diremos .finish en el modificador clicable
     val activity = LocalContext.current as Activity
 
