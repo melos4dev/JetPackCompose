@@ -12,6 +12,11 @@
         android:theme="@style/Theme.CursoJetPackCompose"
         tools:targetApi="31">
         <activity
+            android:name=".MainNavigation"
+            android:exported="true"
+            android:label="@string/title_activity_main_navigation"
+            android:theme="@style/Theme.CursoJetPackCompose" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
