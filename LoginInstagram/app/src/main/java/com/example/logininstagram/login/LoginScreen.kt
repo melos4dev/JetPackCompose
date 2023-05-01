@@ -23,19 +23,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.sp
-import java.util.regex.Pattern
+import com.example.logininstagram.login.LoginViewModel
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel) {
 
     Box(
         Modifier
@@ -43,7 +43,7 @@ fun LoginScreen() {
             .padding(8.dp)
     ) {
         Header(Modifier.align(Alignment.TopEnd))
-        Body(Modifier.align(Alignment.Center))
+        Body(Modifier.align(Alignment.Center), loginViewModel)
         Footer(Modifier.align(Alignment.BottomCenter))
     }
 }
@@ -85,24 +85,25 @@ fun SingUp() {
 
 
 @Composable
-fun Body(modifier: Modifier) {
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    var isLoginEnable by rememberSaveable { mutableStateOf(false) }
+fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
+   val email : String by loginViewModel.email.observeAsState( initial = "")
+    val password by loginViewModel.password.observeAsState(initial = "")
+    val isLoginEnable by loginViewModel.isLoginEnable.observeAsState(initial = false)
 
+    
     Column(modifier = modifier) {
         ImageLogo(Modifier.align(Alignment.CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
 
         Email(email) {
-            email = it
-            isLoginEnable = enableLogin(email, password)
+           loginViewModel.onLoginChanged(email = it, password = password)
+
         }
         Spacer(modifier = Modifier.size(4.dp))
 
         Password(password) {
-            password = it
-            isLoginEnable = enableLogin(email, password)
+           loginViewModel.onLoginChanged(email = email , password = it)
+
         }
         Spacer(modifier = Modifier.size(8.dp))
 
@@ -185,8 +186,7 @@ fun LoginButton(loginEnable: Boolean) {
     }
 }
 
-fun enableLogin(email : String, password:String): Boolean =
-    Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length>6
+
 
 
 @Composable

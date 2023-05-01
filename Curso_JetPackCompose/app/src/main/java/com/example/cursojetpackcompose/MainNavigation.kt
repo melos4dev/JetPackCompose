@@ -35,7 +35,7 @@ class MainNavigation : ComponentActivity() {
                         composable(Routes.Pantalla1.route){Screen1(navigationController)}
                         composable(Routes.Pantalla2.route){Screen2(navigationController)}
                         composable(Routes.Pantalla3.route){Screen3(navigationController)}
-                        composable("pantalla4/{name}",
+                        composable(Routes.Pantalla4.route,
                             arguments = listOf(navArgument("name"){type = NavType.IntType})
                         ){ backStackEntry ->
                             Screen4(
